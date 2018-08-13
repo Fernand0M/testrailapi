@@ -5,20 +5,20 @@ import jxl.Sheet;
 import jxl.Workbook;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.Api;
+import pages.LpMockLab;
 
 import java.io.FileInputStream;
 import java.nio.file.Paths;
 
 public class ApiTestingExcel {
-    Api apiTesting;
+    LpMockLab lpMockLabTesting;
 
-    @Test (dataProvider = "Data")
+    @Test(dataProvider = "Data")
     public void apiTesting(String url, String token, String message) {
         // Pages
-        apiTesting = new Api();
+        lpMockLabTesting = new LpMockLab();
         // Methods
-        apiTesting.dhsup2021(url,token,message);
+        lpMockLabTesting.example(url, token, message);
     }
 
     @DataProvider
