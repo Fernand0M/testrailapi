@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="automation_api" />
+        <module name="testing_api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="automation_api" target="1.8" />
+    <bytecodeTargetLevel target="1.6">
+      <module name="testing_api" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
