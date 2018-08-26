@@ -9,6 +9,7 @@ import java.sql.Statement;
 public class MsSql {
     public String sqlID;
     public String sqlRegistrationID;
+    public String ticketID;
 
     public void mssql(String usernamebd, String passwordbd, String referenceID) {
 
@@ -37,9 +38,12 @@ public class MsSql {
             ResultSet rs = stmt.executeQuery(query); // Not update, you're returning a ResultSet.
             // Get the String Columns
             if (rs.next()) {
-                String sqlID = (rs.getString(1));
-                String sqlRegistrationID = (rs.getString(3));
+                sqlID = (rs.getString(1));
+                sqlRegistrationID = (rs.getString(3));
+                ticketID = (rs.getString(6));
                 System.out.println("ID= " + sqlID);
+                System.out.println("RegistrationID= " + sqlRegistrationID);
+                System.out.println("TicketID =" + ticketID);
             }
             // Close connections
             conn.close();

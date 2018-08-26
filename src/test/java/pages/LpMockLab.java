@@ -6,7 +6,11 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class LpMockLab {
+    public String accessToken;
+    public String bodyRequest;
+    public String state;
     PropertiesReader propreader = new PropertiesReader();
+    String environment = System.getProperty("hostname");
 
     public void example(String strUrl, String strToken, String strResponse) {
         try {
@@ -32,16 +36,17 @@ public class LpMockLab {
     }
 
     // Lab corp
-    public void labCorpResultPost() {
+    public void labCorpResultPost(String sqlID, String regID, String specimendId, char overallResult) {
         try {
             HttpResponse<String> response = Unirest.post("http://qatlsvc03:8080/vif-receiver/results/lab/labcorp")
                     .header("Content-Type", "application/xml")
                     .header("Cache-Control", "no-cache")
                     .header("Postman-Token", "201e0528-ace2-40b2-9775-571ece60cc14")
-                    .body("<soapenv:Envelopexmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header/><soapenv:Body><resultxmlns=\"http://cws.ots.labcorp.com\"><userId>labcorp</userId><password>p@55w0rd</password><result><accessionNumber>0572854881</accessionNumber><accountLocationCode>100041</accountLocationCode><accountLocationName>AEROCONTROL</accountLocationName><accountLocationPhone>2537353350</accountLocationPhone><accountName>HEALTHFORCEPARTNERSCORPORATE</accountName><accountNumber>100041</accountNumber><certifyingScientist/><clientRegistrationId>5606</clientRegistrationId><collectionSiteAddress1>17420NWFWY.</collectionSiteAddress1><collectionSiteAddress2/><collectionSiteAddress3>63-1232342</collectionSiteAddress3><collectionSiteCity>HOUSTON</collectionSiteCity><collectionSiteId>S05551118</collectionSiteId><collectionSiteName>USHEALTHWORKS-TX</collectionSiteName><collectionSiteState>TX</collectionSiteState><collectionSiteZip>77040</collectionSiteZip><collectorCOCcomments><abbreviation/><commentText>100154550.TESTOFVIEWINGCO</commentText><commentType>DI</commentType></collectorCOCcomments><collectorName>Harit</collectorName><collectorPhone>7134460144</collectorPhone><dateTimeSpecimenCollection>2014-11-19T18:11:00.000-00:00</dateTimeSpecimenCollection><dateTimeSpecimenReceivedAtLab>2014-11-19T18:11:00.000-00:00</dateTimeSpecimenReceivedAtLab><dateTimeSpecimenReportedFromLab>2014-11-14T19:11:00.000-00:00</dateTimeSpecimenReportedFromLab><donorId/><donorNameFirst>testFn</donorNameFirst><donorNameLast>testLn</donorNameLast><donorPhone>3323431234</donorPhone><donorReasonForTest>RA</donorReasonForTest><donorSSN>123412341</donorSSN><dotRegulatedAccount>0</dotRegulatedAccount><dotSpecimenResult></dotSpecimenResult><employerNameFromCCF/><labcorpRegistrationNumber>100107498</labcorpRegistrationNumber><mroNameFromCCF/><originalLabCorpAccessionNumber/><overallSpecimenResult>P</overallSpecimenResult><panelId>3872030031</panelId><poctProductId></poctProductId><priorAccount/><specimenId>919923430</specimenId><splitSpecimenReceived>0</splitSpecimenReceived><temperature/><temperatureInRange>1</temperatureInRange><testResults><confirmCutoff></confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative></resultQuantitative><screeningCutoff></screeningCutoff><drugId>001100</drugId><units>ug/mL</units><referenceInterval>200</referenceInterval></testResults><testResults><confirmCutoff>000020</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>20</screeningCutoff><drugId>003000</drugId><units>mg/dL</units><referenceIntervalxsi:nil=\"true\"/></testResults><testResults><confirmCutoff>000300</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>300</screeningCutoff><drugId>004000</drugId><units>ng/mL</units><referenceIntervalxsi:nil=\"true\"/></testResults><testResults><confirmCutoff>000100</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>300</screeningCutoff><drugId>007000</drugId><units>ng/mL</units><referenceIntervalxsi:nil=\"true\"/></testResults><testResults><confirmCutoff>000015</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>50</screeningCutoff><drugId>006000</drugId><units>ng/mL</units><referenceIntervalxsi:nil=\"true\"/></testResults><testResults><confirmCutoff>000015</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>50</screeningCutoff><drugId>002000</drugId><units>ng/mL</units><referenceIntervalxsi:nil=\"true\"/></testResults><testResults><confirmCutoff>000015</confirmCutoff><resultQualitative>N</resultQualitative><resultQuantitative/><screeningCutoff>50</screeningCutoff><drugId>008000</drugId><units>ng/mL</units><referenceIntervalxsi:nil=\"true\"/></testResults><transmissionType>01</transmissionType><pscCollectionSite>0</pscCollectionSite><testingLabId>RTP</testingLabId><donorNameMiddleInitial/></result></result></soapenv:Body></soapenv:Envelope>")
+                    .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n<soapenv:Header/>\r\n<soapenv:Body>\r\n<result xmlns=\"http://cws.ots.labcorp.com\">\r\n<userId>labcorp</userId>\r\n<password>p@55w0rd</password>\r\n<result>\r\n<accessionNumber>0572854881</accessionNumber>\r\n<accountLocationCode>100041</accountLocationCode>\r\n<accountLocationName>AERO CONTROL</accountLocationName>\r\n<accountLocationPhone>2537353350</accountLocationPhone>\r\n<accountName>HEALTHFORCE PARTNERS CORPORATE</accountName>\r\n<accountNumber>100041</accountNumber>\r\n<certifyingScientist/>\r\n    <clientRegistrationId>" + sqlID + "</clientRegistrationId>\r\n  <collectionSiteAddress1>17420 NW FWY.</collectionSiteAddress1>\r\n   <collectionSiteAddress2/>\r\n  <collectionSiteAddress3>63-1232342</collectionSiteAddress3>\r\n  <collectionSiteCity>HOUSTON</collectionSiteCity>\r\n   <collectionSiteId>S05551118</collectionSiteId>\r\n   <collectionSiteName>US HEALTHWORKS-TX</collectionSiteName>\r\n <collectionSiteState>TX</collectionSiteState>\r\n <collectionSiteZip>77040</collectionSiteZip>\r\n <collectorCOCcomments>\r\n  <abbreviation/>\r\n  <commentText>100154550.  TEST OF VIEWING CO</commentText>\r\n  <commentType>DI</commentType>\r\n </collectorCOCcomments>\r\n <collectorName>Harit</collectorName>\r\n<collectorPhone>7134460144</collectorPhone>\r\n<dateTimeSpecimenCollection>2014-11-19T18:11:00.000-00:00</dateTimeSpecimenCollection>\r\n <dateTimeSpecimenReceivedAtLab>2014-11-19T18:11:00.000-00:00</dateTimeSpecimenReceivedAtLab>\r\n <dateTimeSpecimenReportedFromLab>2014-11-14T19:11:00.000-00:00</dateTimeSpecimenReportedFromLab>\r\n <donorId/>\r\n <donorNameFirst>testFn</donorNameFirst>\r\n <donorNameLast>testLn</donorNameLast>\r\n  <donorPhone>3323431234</donorPhone>\r\n  <donorReasonForTest>RA</donorReasonForTest>\r\n <donorSSN>123412341</donorSSN>\r\n <dotRegulatedAccount>0</dotRegulatedAccount>\r\n  <dotSpecimenResult>  </dotSpecimenResult>\r\n <employerNameFromCCF/>\r\n  <labcorpRegistrationNumber>" + regID + "</labcorpRegistrationNumber>\r\n <mroNameFromCCF/>\r\n <originalLabCorpAccessionNumber/>\r\n  <overallSpecimenResult>" + overallResult + "</overallSpecimenResult>\r\n  <panelId>3872030031</panelId>\r\n <poctProductId>  </poctProductId>\r\n<priorAccount/>\r\n  <specimenId>" + specimendId + "</specimenId>\r\n  <splitSpecimenReceived>0</splitSpecimenReceived>\r\n <temperature/>\r\n  <temperatureInRange>1</temperatureInRange>\r\n  <testResults>\r\n  <confirmCutoff>\r\n </confirmCutoff>\r\n  <resultQualitative>N</resultQualitative>\r\n<resultQuantitative>\r\n</resultQuantitative>\r\n <screeningCutoff>\r\n  </screeningCutoff>\r\n  <drugId>001100</drugId>\r\n  <units>ug/mL</units>\r\n  <referenceInterval>200</referenceInterval>\r\n  </testResults>\r\n <testResults>\r\n  <confirmCutoff>000020</confirmCutoff>\r\n  <resultQualitative>N</resultQualitative>\r\n  <resultQuantitative/>\r\n  <screeningCutoff>20</screeningCutoff>\r\n <drugId>003000</drugId>\r\n  <units>mg/dL</units>\r\n <referenceInterval xsi:nil=\"true\"/>\r\n </testResults>\r\n   <testResults>\r\n  <confirmCutoff>000300</confirmCutoff>\r\n  <resultQualitative>N</resultQualitative>\r\n   <resultQuantitative/>\r\n   <screeningCutoff>300</screeningCutoff>\r\n  <drugId>004000</drugId>\r\n <units>ng/mL</units>\r\n  <referenceInterval xsi:nil=\"true\"/>\r\n </testResults>\r\n <testResults>\r\n<confirmCutoff>000100</confirmCutoff>\r\n <resultQualitative>N</resultQualitative>\r\n  <resultQuantitative/>\r\n  <screeningCutoff>300</screeningCutoff>\r\n <drugId>007000</drugId>\r\n <units>ng/mL</units>\r\n<referenceInterval xsi:nil=\"true\"/>\r\n</testResults>\r\n<testResults>\r\n <confirmCutoff>000015</confirmCutoff>\r\n<resultQualitative>N</resultQualitative>\r\n<resultQuantitative/>\r\n<screeningCutoff>50</screeningCutoff>\r\n <drugId>006000</drugId>\r\n<units>ng/mL</units>\r\n<referenceInterval xsi:nil=\"true\"/>\r\n</testResults>\r\n<testResults>\r\n<confirmCutoff>000015</confirmCutoff>\r\n<resultQualitative>N</resultQualitative>\r\n<resultQuantitative/>\r\n<screeningCutoff>50</screeningCutoff>\r\n<drugId>002000</drugId>\r\n<units>ng/mL</units>\r\n<referenceInterval xsi:nil=\"true\"/>\r\n</testResults>\r\n<testResults>\r\n<confirmCutoff>000015</confirmCutoff>\r\n<resultQualitative>N</resultQualitative>\r\n<resultQuantitative/>\r\n<screeningCutoff>50</screeningCutoff>\r\n<drugId>008000</drugId>\r\n<units>ng/mL</units>\r\n<referenceInterval xsi:nil=\"true\"/>\r\n</testResults>\r\n<transmissionType>01</transmissionType>\r\n<pscCollectionSite>0</pscCollectionSite>\r\n<testingLabId>RTP</testingLabId>\r\n<donorNameMiddleInitial/>\r\n</result>\r\n</result>\r\n</soapenv:Body>\r\n</soapenv:Envelope>\r\n")
                     .asString();
             String resp = response.getBody();
             resp = resp.replaceAll("\"", "");
+            System.out.println("Labcorp Result Post Executed log :");
             System.out.println(resp);
         } catch (
                 UnirestException e) {
@@ -49,13 +54,13 @@ public class LpMockLab {
         }
     }
 
-    public void labCorpStatusPost(String sqlID, String regID, int statusNumber) {
+    public void labCorpStatusPost(String sqlID, String regID, int statusNumber, String specimendId) {
         try {
             HttpResponse<String> response = Unirest.post("http://qatlsvc03:8080/vif-receiver/results/status/labcorp")
                     .header("Content-Type", "application/xml")
                     .header("Cache-Control", "no-cache")
                     .header("Postman-Token", "9ffedc59-6c4b-45e1-ba98-0cb1589c2048")
-                    .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<soapenv:Header/>\r\n\t<soapenv:Body>\r\n\t\t<status xmlns=\"http://cws.ots.labcorp.com\">\r\n\t\t\t<userId>labcorp</userId>\r\n\t\t\t<password>p@55w0rd</password>\r\n\t\t\t<accountNumber>100041</accountNumber>\r\n\t\t\t<accountLocationCode>100041</accountLocationCode>\r\n\t\t\t<clientRegistrationId>" + sqlID + "</clientRegistrationId>\r\n\t\t\t<labcorpRegistrationNumber>" + regID + "</labcorpRegistrationNumber>\r\n\t\t\t<specimenId>UPTSTFOR01</specimenId>\r\n\t\t\t<status>" + statusNumber + "</status>\r\n\t\t</status>\r\n\t</soapenv:Body>\r\n</soapenv:Envelope>")
+                    .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<soapenv:Header/>\r\n\t<soapenv:Body>\r\n\t\t<status xmlns=\"http://cws.ots.labcorp.com\">\r\n\t\t\t<userId>labcorp</userId>\r\n\t\t\t<password>p@55w0rd</password>\r\n\t\t\t<accountNumber>100041</accountNumber>\r\n\t\t\t<accountLocationCode>100041</accountLocationCode>\r\n\t\t\t<clientRegistrationId>" + sqlID + "</clientRegistrationId>\r\n\t\t\t<labcorpRegistrationNumber>" + regID + "</labcorpRegistrationNumber>\r\n\t\t\t<specimenId>" + specimendId + "</specimenId>\r\n\t\t\t<status>" + statusNumber + "</status>\r\n\t\t</status>\r\n\t</soapenv:Body>\r\n</soapenv:Envelope>")
                     .asString();
             String resp = response.getBody();
             resp = resp.replaceAll("\"", "");
@@ -66,16 +71,19 @@ public class LpMockLab {
         }
     }
 
-    public void labCorpCocPost() {
+    public void labCorpCocPost(String sqlID, String regID, String specimendId) {
+        String cocBody = (propreader.getProperty("labcorpCocBody"));
         try {
-            HttpResponse<String> response = Unirest.post("http://qatlsvc03:8080/vif-ohs-receiver/results/coc/labcorp")
+            HttpResponse<String> response = Unirest.post("http://qatlsvc03:8080/vif-receiver/results/coc/labcorp")
                     .header("Content-Type", "application/xml")
                     .header("Cache-Control", "no-cache")
                     .header("Postman-Token", "09de4085-23cf-4b21-ab7d-c1c4517158bf")
-                    .body(propreader.getProperty("labcorpCocBody"))
+                    .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<soapenv:Header/>\r\n\t<soapenv:Body>\r\n\t\t<coc xmlns=\"http://cws.ots.labcorp.com\">\r\n\t\t\t<userId>labcorp</userId>\r\n\t\t\t<password>p@55w0rd</password>\r\n\t\t\t<accountNumber>100041</accountNumber>\r\n\t\t\t<accountLocationCode>100041</accountLocationCode>\r\n\t\t\t<clientRegistrationId>" + sqlID + "</clientRegistrationId>\r\n\t\t\t<labcorpRegistrationNumber>" + regID + "</labcorpRegistrationNumber>\r\n\t\t\t<specimenId>" + specimendId + "</specimenId>\r\n\t\t\t" + cocBody)
                     .asString();
+
             String resp = response.getBody();
             resp = resp.replaceAll("\"", "");
+            System.out.println("Labcorp coc Executed log :");
             System.out.println(resp);
         } catch (
                 UnirestException e) {
@@ -84,13 +92,13 @@ public class LpMockLab {
     }
 
     // Escreen
-    public void EscreenStatusPost() {
+    public void EscreenStatusPost(String sqlID, String regID, int statusNumber, String specimendId) {
         try {
             HttpResponse<String> response = Unirest.post("http://qatlsvc03:8080/vif-receiver/results/status/alere-escreen")
                     .header("Content-Type", "application/xml")
                     .header("Cache-Control", "no-cache")
                     .header("Postman-Token", "0573e182-c083-4050-b034-745901c272ba")
-                    .body("<eScreenData TransmissionID=\"53a21177-fa69-4db3-beb5-3e279d7f421d\">\r\n\t<RecordCount>1</RecordCount>\r\n\t<Version>1.0</Version>\r\n\t<DateReported>1/25/2017</DateReported>\r\n\t<TimeReported>4:45:35 PM</TimeReported>\r\n\t<SpecimenStatus Status=\"3\">\r\n\t\t<eScreenID>204650730</eScreenID>\r\n\t\t<ConfirmationNumber>AI7893702M8</ConfirmationNumber>\r\n\t\t<eScreenClientAccount>999999</eScreenClientAccount>\r\n\t\t<eScreenClientSubAccount>63</eScreenClientSubAccount>\r\n\t\t<LabName>ALERE</LabName>\r\n\t\t<LabAccount>ESCH01</LabAccount>\r\n\t\t<ClientName>Lithia Motors</ClientName>\r\n\t\t<InternalClientID>1</InternalClientID>\r\n\t\t<ElectronicClientID>6308</ElectronicClientID>\r\n\t\t<LocationInfo>Providence Occupational Health-Northwest</LocationInfo>\r\n\t\t<CollectionSite>13792</CollectionSite>\r\n\t\t<AccessionNum/>\r\n\t\t<SpecimenType>U</SpecimenType>\r\n\t\t<DonorName>FName_160107284, LName_160107284</DonorName>\r\n\t\t<SSN>123412341</SSN>\r\n\t\t<OtherID/>\r\n\t\t<OtherIDType/>\r\n\t\t<ExternalDonorID>6308</ExternalDonorID>\r\n\t\t<DOB>4/26/1990</DOB>\r\n\t\t<HomePhone/>\r\n\t\t<HomePhoneExt/>\r\n\t\t<WorkPhone>925-961-2659</WorkPhone>\r\n\t\t<WorkPhoneExt/>\r\n\t\t<ChainOfCustody>TEST394884</ChainOfCustody>\r\n\t\t<CollectionDate>1/25/2017</CollectionDate>\r\n\t\t<CollectionTime>4:45:26 PM</CollectionTime>\r\n\t\t<LabReceivedDate>1/25/2017</LabReceivedDate>\r\n\t\t<LabReceivedTime>4:45:26 PM</LabReceivedTime>\r\n\t\t<LabReportDate>1/25/2017</LabReportDate>\r\n\t\t<LabReportTime>4:45:26 PM</LabReportTime>\r\n\t\t<VerificationDate/>\r\n\t\t<VerificationTime/>\r\n\t\t<ReasonForTest>PE</ReasonForTest>\r\n\t\t<SpecimenCollector>Petry, Mytoka</SpecimenCollector>\r\n\t\t<PrintedComments/>\r\n\t\t<Regulation>N</Regulation>\r\n\t\t<RegulationType/>\r\n\t</SpecimenStatus>\r\n</eScreenData>")
+                    .body("<eScreenData TransmissionID=\"53a21177-fa69-4db3-beb5-3e279d7f421d\">\r\n\t<RecordCount>1</RecordCount>\r\n\t<Version>1.0</Version>\r\n\t<DateReported>1/25/2017</DateReported>\r\n\t<TimeReported>4:45:35 PM</TimeReported>\r\n\t<SpecimenStatus Status=\"" + statusNumber + "\">\r\n\t\t<eScreenID>204650730</eScreenID>\r\n\t\t<ConfirmationNumber>" + regID + "</ConfirmationNumber>\r\n\t\t<eScreenClientAccount>999999</eScreenClientAccount>\r\n\t\t<eScreenClientSubAccount>63</eScreenClientSubAccount>\r\n\t\t<LabName>ALERE</LabName>\r\n\t\t<LabAccount>ESCH01</LabAccount>\r\n\t\t<ClientName>Lithia Motors</ClientName>\r\n\t\t<InternalClientID>1</InternalClientID>\r\n\t\t<ElectronicClientID>6308</ElectronicClientID>\r\n\t\t<LocationInfo>Providence Occupational Health-Northwest</LocationInfo>\r\n\t\t<CollectionSite>13792</CollectionSite>\r\n\t\t<AccessionNum/>\r\n\t\t<SpecimenType>U</SpecimenType>\r\n\t\t<DonorName>FName_160107284, LName_160107284</DonorName>\r\n\t\t<SSN>123412341</SSN>\r\n\t\t<OtherID/>\r\n\t\t<OtherIDType/>\r\n\t\t<ExternalDonorID>" + sqlID + "</ExternalDonorID>\r\n\t\t<DOB>4/26/1990</DOB>\r\n\t\t<HomePhone/>\r\n\t\t<HomePhoneExt/>\r\n\t\t<WorkPhone>925-961-2659</WorkPhone>\r\n\t\t<WorkPhoneExt/>\r\n\t\t<ChainOfCustody>TEST394884</ChainOfCustody>\r\n\t\t<CollectionDate>1/25/2017</CollectionDate>\r\n\t\t<CollectionTime>4:45:26 PM</CollectionTime>\r\n\t\t<LabReceivedDate>1/25/2017</LabReceivedDate>\r\n\t\t<LabReceivedTime>4:45:26 PM</LabReceivedTime>\r\n\t\t<LabReportDate>1/25/2017</LabReportDate>\r\n\t\t<LabReportTime>4:45:26 PM</LabReportTime>\r\n\t\t<VerificationDate/>\r\n\t\t<VerificationTime/>\r\n\t\t<ReasonForTest>PE</ReasonForTest>\r\n\t\t<SpecimenCollector>Petry, Mytoka</SpecimenCollector>\r\n\t\t<PrintedComments/>\r\n\t\t<Regulation>N</Regulation>\r\n\t\t<RegulationType/>\r\n\t</SpecimenStatus>\r\n</eScreenData>")
                     .asString();
             String resp = response.getBody();
             resp = resp.replaceAll("\"", "");
@@ -168,5 +176,58 @@ public class LpMockLab {
                 UnirestException e) {
             throw new CaseFailedException("Connection failed");
         }
+    }
+
+    public void intLpGetToken() {
+        try {
+            HttpResponse<String> response = Unirest.post("https://auth.int.sterlingbackcheck.com/v1/tokens/authenticate")
+                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .header("Cache-Control", "no-cache")
+                    .header("Postman-Token", "d796c839-cd17-41bb-96e9-c48b491224c6")
+                    .body("{\"username\":\"tw.int@api.sterlingbackcheck.com\", \"password\":\"ce5ca701-69e2-4180-bcfb-5c6c35588155\"}")
+                    .asString();
+            String str = response.getBody();
+            accessToken = str.split("\"")[3];
+            System.out.println("Token added");
+        } catch (
+                UnirestException e) {
+            throw new CaseFailedException("Connection failed");
+        }
+    }
+
+    public void provisionLPTicket(String ticket, String accesstoken) {
+        try {
+            HttpResponse<String> response = Unirest.get("https://tickets.int.sterlingbackcheck.com/v1/tickets/" + ticket)
+                    .header("Authorization", "Bearer " + accesstoken)
+                    .header("Cache-Control", "no-cache")
+                    .header("Postman-Token", "7ebfedd8-2f3a-4f93-8fdf-4b4a87b43f3a")
+                    .asString();
+            bodyRequest = response.getBody();
+
+        } catch (
+                UnirestException e) {
+            throw new CaseFailedException("Connection failed");
+        }
+
+    }
+
+
+    public void ldResultPostBack(String bodyRequest) {
+        try {
+            HttpResponse<String> response = Unirest.post("http://dvm-" + environment + ".aws.talentwise.com/integration/sbc/dhs_postback.php?op=sc")
+                    .header("Content-Type", "application/json")
+                    .header("Accept", "application/json")
+                    .header("Cookie", "XDEBUG_SESSION=phpstormxdebug")
+                    .header("Cache-Control", "no-cache")
+                    .header("Postman-Token", "d869f2ba-57f3-40ba-a727-0fc7ad2dcffc")
+                    .body(bodyRequest)
+                    .asString();
+            System.out.println(response.getStatus());
+            System.out.println(response.getBody());
+        } catch (UnirestException e) {
+            throw new CaseFailedException("Connection Failed");
+        }
+
     }
 }
