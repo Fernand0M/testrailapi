@@ -10,6 +10,7 @@ public class MsSql {
     public String sqlID;
     public String sqlRegistrationID;
     public String ticketID;
+    public String panelID;
 
     public void mssql(String usernamebd, String passwordbd, String referenceID) {
 
@@ -41,9 +42,12 @@ public class MsSql {
                 sqlID = (rs.getString(1));
                 sqlRegistrationID = (rs.getString(3));
                 ticketID = (rs.getString(6));
-                System.out.println("ID= " + sqlID);
-                System.out.println("RegistrationID= " + sqlRegistrationID);
-                System.out.println("TicketID =" + ticketID);
+                panelID = (rs.getString(20));
+                System.out.println("-----------------Data from DataBase----------------");
+                System.out.println("ID = " + sqlID);
+                System.out.println("RegistrationID = " + sqlRegistrationID);
+                System.out.println("TicketID = " + ticketID);
+                System.out.println("Panel_ID = " + panelID);
             }
             // Close connections
             conn.close();
