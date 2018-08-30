@@ -6,12 +6,14 @@ import pages.MsSql;
 
 import java.util.concurrent.TimeUnit;
 
-public class sqltesting {
-    public String userDB = ""; //TODO: Change with your credentials
-    public String passDB = ""; //TODO: Change with your credentials
-    public String specimendId = "FMVL20010"; //TODO: Change on each exercise
-    public String referenceId = "987953696"; //TODO: Change on each exercise
-    public char overallResult = 'P';
+public class LPInternalTool {
+
+    // ------- Variables -------------------------------------
+    String userDB = ""; //TODO: Change with your credentials
+    String passDB = ""; //TODO: Change with your credentials
+    String specimendId = "RandomString"; //TODO: Change on each exercise
+    String referenceId = "987953696"; //TODO: Change on each exercise
+    char overallResult = 'P';
 
     MsSql mssqltesting;
     LpMockLab lpMockLabTesting;
