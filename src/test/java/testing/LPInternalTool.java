@@ -9,10 +9,10 @@ import java.util.concurrent.TimeUnit;
 public class LPInternalTool {
 
     // ------- Variables -------------------------------------
-    String userDB = "fmorales"; //TODO: Change with your credentials
-    String passDB = "Softtek01!"; //TODO: Change with your credentials
-    String specimendId = "RandomString1234"; //TODO: Change on each exercise
-    String referenceId = "987956754"; //TODO: Change on each exercise
+    String userDB = ""; //TODO: Change with your credentials
+    String passDB = ""; //TODO: Change with your credentials
+    String specimendId = "RandomString1115"; //TODO: Change on each exercise
+    String referenceId = ""; //TODO: Change on each exercise
     char overallResult = 'P';
 
     MsSql mssqltesting;
