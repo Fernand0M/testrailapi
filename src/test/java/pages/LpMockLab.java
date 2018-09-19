@@ -215,7 +215,7 @@ public class LpMockLab {
 
     public void ldResultPostBack(String bodyRequest) {
         try {
-            HttpResponse<String> response = Unirest.post("http://dvm-" + environment + ".aws.talentwise.com/integration/sbc/dhs_postback.php?op=sc")
+            HttpResponse<String> response = Unirest.post("https://dvm-" + environment + ".aws.talentwise.com/integration/sbc/dhs_postback.php?op=sc")
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
                     .header("Cookie", "XDEBUG_SESSION=phpstormxdebug")
