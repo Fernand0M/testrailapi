@@ -4,22 +4,28 @@ import org.testng.annotations.Test;
 import pages.LpMockLab;
 import pages.MsSql;
 
-import java.util.concurrent.TimeUnit;
-
-public class LPInternalTool {
+public class Quest {
 
     // ------- Variables -------------------------------------
     String userDB = ""; //TODO: Change with your credentials
-    String passDB = ""; //TODO: Change with your credentials
-    String specimendId = "RandomString1115"; //TODO: Change on each exercise
-    String referenceId = ""; //TODO: Change on each exercise
+    String passDB = "!"; //TODO: Change with your credentials
+    String specimendId = "FERNANDOV55"; //TODO: Change on each exercise
+    String referenceId = "988161433"; //TODO: Change on each exercise
     char overallResult = 'P';
 
     MsSql mssqltesting;
     LpMockLab lpMockLabTesting;
 
     @Test
-    public void labCorpLP() {
+    public void DatabaseSearch() {
+        mssqltesting = new MsSql();
+        //Execute Query
+        mssqltesting.mssql(userDB, passDB, referenceId);
+    }
+
+
+    @Test
+    public void questStep1() {
         mssqltesting = new MsSql();
         lpMockLabTesting = new LpMockLab();
 
@@ -31,27 +37,14 @@ public class LPInternalTool {
         lpMockLabTesting.provisionLPTicket(mssqltesting.ticketID, lpMockLabTesting.accessToken);
         //Execute labResultPostback
         lpMockLabTesting.ldResultPostBack(lpMockLabTesting.bodyRequest);
-        //Execute Postman status
-        int statusNumber = 0;
-        while (statusNumber < 11) {
-            statusNumber++;
-            if (statusNumber != 6) {
-                System.out.println("Status executed: " + statusNumber);
-                lpMockLabTesting.labCorpStatusPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, statusNumber, specimendId);
-            }
-        }
-        //Execute labCorpCocPost
-        lpMockLabTesting.labCorpCocPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, specimendId);
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (Exception e) {
-        }
-        //Execute labCorpResultPost
-        lpMockLabTesting.labCorpResultPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, specimendId, overallResult);
+        lpMockLabTesting.QuestStatusPost(mssqltesting.sqlRegistrationID, "OK");
+        lpMockLabTesting.QuestCocPost(mssqltesting.sqlRegistrationID, specimendId);
+        lpMockLabTesting.QuestResultPost(specimendId);
     }
 
+
     @Test
-    public void labCorpLP2() {
+    public void questStep2() {
         mssqltesting = new MsSql();
         lpMockLabTesting = new LpMockLab();
 
