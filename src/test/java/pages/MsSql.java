@@ -56,4 +56,40 @@ public class MsSql {
         }
 
     }
+
+    public void devdb(String usernamebd, String passwordbd ) {
+
+        Connection conn = null;
+        String url = "jdbc:sqlserver://hdb1.dev.aws.talentwise.com;databaseName=Intelius;integratedSecurity=true";
+        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String userName = usernamebd;
+        String password = passwordbd;
+        Statement stmt;
+        try {
+
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, userName, password);
+            // Query String
+            String query = "";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query); // Not update, you're returning a ResultSet.
+            // Get the String Columns
+            if (rs.next()) {
+                sqlID = (rs.getString(1));
+                sqlRegistrationID = (rs.getString(3));
+                ticketID = (rs.getString(6));
+                panelID = (rs.getString(20));
+                System.out.println("-----------------Data from DataBase----------------");
+                System.out.println("ID = " + sqlID);
+                System.out.println("RegistrationID = " + sqlRegistrationID);
+                System.out.println("TicketID = " + ticketID);
+                System.out.println("Panel_ID = " + panelID);
+            }
+            // Close connections
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

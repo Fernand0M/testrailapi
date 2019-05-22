@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 public class Alere {
 
     // ------- Variables -------------------------------------
-    String userDB = ""; //TODO: Change with your credentials
-    String passDB = ""; //TODO: Change with your credentials
+    String userDB = "fmorales"; //TODO: Change with your credentials
+    String passDB = "Softtek04!"; //TODO: Change with your credentials
     String specimendId = "FERNANDOV44"; //TODO: Change on each exercise
     String referenceId = "988161434"; //TODO: Change on each exercise
     char overallResult = 'P';
@@ -25,6 +25,13 @@ public class Alere {
         mssqltesting.mssql(userDB, passDB, referenceId);
     }
 
+    @Test
+    public void Database() {
+        mssqltesting = new MsSql();
+        //Execute Query
+        mssqltesting.devdb("readWrite", "RW5b147");
+    }
+
 
     @Test
     public void alereStep1() {
@@ -37,33 +44,7 @@ public class Alere {
          lpMockLabTesting.intLpGetToken();
         //Execute provisionLPTicket
         lpMockLabTesting.provisionLPTicket(mssqltesting.ticketID, lpMockLabTesting.accessToken);
-        //Execute labResultPostback
-        lpMockLabTesting.ldResultPostBack(lpMockLabTesting.bodyRequest);
-        //Execute Postman status
-        lpMockLabTesting.EscreenStatusPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, 4);
-        lpMockLabTesting.EscreenStatusPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, 1);
-        lpMockLabTesting.EscreenStatusPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, 3);
-        lpMockLabTesting.EscreenStatusPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, 2);
-
-        // Execute labCorpResultPost
-        lpMockLabTesting.EscreenResultPost(mssqltesting.sqlID, mssqltesting.sqlRegistrationID, specimendId);
 
     }
-
-
-    @Test
-    public void alereStep2() {
-        mssqltesting = new MsSql();
-        lpMockLabTesting = new LpMockLab();
-
-        //Execute Query
-        mssqltesting.mssql(userDB, passDB, referenceId);
-        //Execute GetToken
-        lpMockLabTesting.intLpGetToken();
-        //Execute provisionLPTicket
-        lpMockLabTesting.provisionLPTicket(mssqltesting.ticketID, lpMockLabTesting.accessToken);
-        //Execute labResultPostback
-        lpMockLabTesting.ldResultPostBack(lpMockLabTesting.bodyRequest);
-    }
-
 }
+

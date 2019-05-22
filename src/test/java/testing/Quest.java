@@ -7,8 +7,8 @@ import pages.MsSql;
 public class Quest {
 
     // ------- Variables -------------------------------------
-    String userDB = ""; //TODO: Change with your credentials
-    String passDB = "!"; //TODO: Change with your credentials
+    String userDB = "fmorales"; //TODO: Change with your credentials
+    String passDB = "Softtek04!"; //TODO: Change with your credentials
     String specimendId = "FERNANDOV55"; //TODO: Change on each exercise
     String referenceId = "988161433"; //TODO: Change on each exercise
     char overallResult = 'P';
